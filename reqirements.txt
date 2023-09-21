@@ -1,7 +1,0 @@
-bs4
-requests
-tqdm
-pandas
-pymorphy2
-nltk
-scikit-learn
