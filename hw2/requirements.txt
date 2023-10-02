@@ -1,0 +1,6 @@
+nltk
+xml-python
+PySimpleGUI
+stanza
+natasha
+pymorphy2
