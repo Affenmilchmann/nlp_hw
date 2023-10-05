@@ -8,14 +8,18 @@ pos_tags = [
     "ADJ", "ADP", "ADV", "AUX", "CCONJ",
     "DET", "INTJ", "NOUN", "NUM", "PART",
     "PRON", "PROPN", "PUNCT", "SCONJ", "SYM",
-    "VERB"
+    "VERB", "X"
 ]
 
 input_file = 'text.txt'
 output_file = 'parsed_data/manual.xml'
 with open('text.txt', 'r') as f:
     text = f.read()
-tokens = tokenize.word_tokenize(text) # returns list[str]
+
+tokens = list(filter(
+    lambda x: x.replace('-','').isalpha(),
+    tokenize.word_tokenize(text) 
+))
 
 def pretty_print(xml_string):
     parsed_xml = minidom.parseString(xml_string)
@@ -41,7 +45,7 @@ class POSTagger:
             button = tk.Button(self.window, text=pos_tag, command=lambda pos_tag=pos_tag: self.tag_word(pos_tag))
             button.pack()
 
-        self.save_button = tk.Button(self.window, text="Save and Exit", command=self.save)
+        self.save_button = tk.Button(self.window, text="Save", command=self.save)
         self.save_button.pack()
 
     def tag_word(self, pos_tag):
@@ -67,7 +71,6 @@ class POSTagger:
         tree = ET.ElementTree(root)
         ET.indent(tree, space="\t", level=0)
         tree.write(output_file, encoding='utf-8')
-        self.window.quit()
 
     def run(self):
         self.window.mainloop()
