@@ -1,4 +1,3 @@
-from nltk import tokenize
 from pathlib import Path
 import stanza
 import xml.etree.ElementTree as ET
