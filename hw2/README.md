@@ -1,0 +1,1 @@
+Second homework. See [main.ipynb](./main.ipynb) for the details
